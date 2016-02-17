@@ -1,0 +1,6 @@
+framework module Pods_MavYaksTests {
+  umbrella header "Pods-MavYaksTests-umbrella.h"
+
+  export *
+  module * { export * }
+}
