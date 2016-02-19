@@ -10,13 +10,14 @@ import UIKit
 
 class LoginViewController: UIViewController {
 
+    //IB OUTLETS, Variables, and Class declarations
     @IBOutlet weak var Email: UITextField!
     
     @IBOutlet weak var Password: UITextField!
     
     @IBOutlet weak var emailErrorTxt: UILabel!
     @IBOutlet weak var passwordErrorTxt: UILabel!
-    var business = UserBusiness()
+    private var business = UserBusiness()
     
     
     /*
@@ -39,6 +40,11 @@ class LoginViewController: UIViewController {
         view.addGestureRecognizer(tap)
         
         
+    }
+    
+    @IBAction func returnToLoginScreen(segue: UIStoryboardSegue) {
+        print(business.ref.authData)
+        business.logoutUser()
     }
     
     override func viewDidAppear(animated: Bool) {

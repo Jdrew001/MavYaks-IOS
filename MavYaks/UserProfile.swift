@@ -10,8 +10,16 @@ import Foundation
 
 class UserProfile: NSObject {
 
-    init(username: String, firstName: String, lastName: String) {
-        
-    }
+    /*
+        Class to do list:
+    
+    
+    
+    
+    
+    
+    
+    
+    */
     
 }

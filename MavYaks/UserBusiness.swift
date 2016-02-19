@@ -2,6 +2,10 @@
 //  UserBusiness.swift
 //  MavYaks
 //
+//
+//  The Business class handles all the errors and data code that we need
+//      It registers and Logs the user in
+//
 //  Created by Drew on 2/13/16.
 //  Copyright © 2016 dtatkison. All rights reserved.
 //
@@ -12,6 +16,7 @@ import UIKit
 
 class UserBusiness {
     
+    //Variables and Class declarations
     let ref = Firebase(url: "https://mavyak.firebaseio.com");
     
     init() {
@@ -52,10 +57,38 @@ class UserBusiness {
                     }
                     
                 } else {
-                    let uid = result["uid"] as? String
-                    print("Successfully created user account with uid: \(uid)")
-                    viewController.goToNextView()
-                }
+                    
+                    /*
+                    * Authenticating the user through email and password
+                    *
+                    * After authenticated and no error occurs, then we create a user object in the database and pass 
+                    *   the user's authetication provider, username, and email
+                    *
+                    */
+                    self.ref.authUser(user.getEmail(), password: user.getPassword(), withCompletionBlock: { (error, authData) -> Void in
+                        
+                        if error != nil {
+                            
+                            print("An error occured")
+                            
+                        } else {
+                            //This executes when no error exists
+                            
+                            let userId = authData.uid
+                            
+                            let newUser = [
+                                "provider": authData.provider,
+                                "email": authData.providerData["email"] as? NSString as? String,
+                                "username" : user.getUsername()
+                            ]
+                            
+                            self.ref.childByAppendingPath("users").childByAppendingPath(userId).setValue(newUser)
+                        }
+                        
+                    })
+                    
+                viewController.goToNextView()
+            }
         })
         
     }
@@ -95,6 +128,8 @@ class UserBusiness {
                     }
                     
                 } else {
+                    
+                    
                     // We are now logged in
                     viewController.goToNextView()
                     

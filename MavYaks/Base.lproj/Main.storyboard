@@ -108,7 +108,7 @@
         <!--Item-->
         <scene sceneID="S72-I6-PD9">
             <objects>
-                <viewController id="m3g-AL-kzP" sceneMemberID="viewController">
+                <viewController id="m3g-AL-kzP" customClass="MoreViewController" customModule="MavYaks" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="MUB-la-Zod"/>
                         <viewControllerLayoutGuide type="bottom" id="aWV-Le-vH1"/>
@@ -122,9 +122,12 @@
                                 <items>
                                     <barButtonItem title="Logout" id="IFw-uI-Xnv">
                                         <color key="tintColor" red="0.14117647059999999" green="0.31372549020000001" blue="0.56862745100000001" alpha="1" colorSpace="calibratedRGB"/>
+                                        <connections>
+                                            <segue destination="GCf-T2-hfV" kind="unwind" unwindAction="returnToLoginScreen:" id="uZt-tC-2eC"/>
+                                        </connections>
                                     </barButtonItem>
                                 </items>
-                                <color key="barTintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="barTintColor" white="0.85194798519736847" alpha="1" colorSpace="calibratedWhite"/>
                             </toolbar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -137,6 +140,7 @@
                     <tabBarItem key="tabBarItem" title="Item" id="ugv-Uo-B1L"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="U01-IR-U7g" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="GCf-T2-hfV" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="-570" y="1582"/>
         </scene>

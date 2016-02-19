@@ -48,14 +48,35 @@ class User {
         
     }
     
+    /*
+    * GET EMAIL
+    *
+    * RETURNS: String
+    *
+    * DESCRIPTION: Getter returning a string...The user's email that has been entered
+    */
     func getEmail() -> String {
         return self.email
     }
     
+    /*
+    * GET PASSWORD
+    *
+    * RETURNS: String
+    *
+    * DESCRIPTION: Getter returning a string...The user's password that has been entered
+    */
     func getPassword() -> String {
         return self.password
     }
     
+    /*
+    * GET USERNAME
+    *
+    * RETURNS: String
+    *
+    * DESCRIPTION: Getter returning a string...The user's username that has been entered
+    */
     func getUsername() -> String {
         return self.username
     }

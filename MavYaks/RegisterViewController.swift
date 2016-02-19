@@ -24,6 +24,8 @@ class RegisterViewController: UIViewController {
     let business = UserBusiness()
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        swipeDetails()
 
         
     }
@@ -100,6 +102,49 @@ class RegisterViewController: UIViewController {
         }))
         
         self.presentViewController(alert, animated: true, completion: nil)
+        
+    }
+    
+    /*
+    * SWIPE TO CLOSE
+    *
+    * PARAMS: UIGesture Recognizer -- Gesture
+    *
+    * DESCRIPTION:
+    *   Method that is called when a swiping action is performed.
+    *
+    */
+    func swipeToClose(gesture: UIGestureRecognizer) {
+        
+        if let swipeGesture = gesture as? UISwipeGestureRecognizer {
+            
+            switch swipeGesture.direction {
+            case UISwipeGestureRecognizerDirection.Down:
+                
+                //Dismiss the view
+                self.dismissViewControllerAnimated(true, completion: nil)
+            default:
+                break;
+            }
+            
+        }
+        
+    }
+    
+    /*
+    * SWIPE DETAILS
+    *
+    * DESCRIPTION:
+    *
+    * Method holds the details of the swipe we want to detect
+    *
+    *
+    */
+    func swipeDetails() {
+        
+        let swipeDown = UISwipeGestureRecognizer(target: self, action: "swipeToClose:")
+        swipeDown.direction = UISwipeGestureRecognizerDirection.Down
+        self.view.addGestureRecognizer(swipeDown)
         
     }
     
