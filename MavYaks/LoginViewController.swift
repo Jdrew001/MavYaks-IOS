@@ -40,6 +40,18 @@ class LoginViewController: UIViewController {
         
         
     }
+    
+    override func viewDidAppear(animated: Bool) {
+        
+        //Present the next view if a user has already been authenticated
+        if business.authUser() == true {
+            
+            //UNCOMMENT!!!!!!
+            goToNextView()
+            
+        }
+        
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -83,11 +95,9 @@ class LoginViewController: UIViewController {
             
             
             //Call a method that takes the email and password and gives it to the model
-            business.loginUser(User(email: Email.text!, password: Password.text!, username: ""))
-            performSegueWithIdentifier("login-main", sender: nil)
+            business.loginUser(User(email: Email.text!, password: Password.text!, username: ""), viewController: self)
         }         
     }
-    
     
     /*
     *
@@ -99,16 +109,45 @@ class LoginViewController: UIViewController {
         view.endEditing(true)
     }
     
-    
-
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
+    * CREATE ALERT
+    *
+    * PARAMS: NONE
+    *
+    * DESCRIPTION:
+    *   Create a message alert pop up when the user types in some invalid credentials.
+    *   Message is based on the error!
+    *
     */
+    func createAlert(message: String) {
+        
+        let alert = UIAlertController(title: "ERROR", message: message, preferredStyle: UIAlertControllerStyle.Alert)
+        
+        alert.addAction(UIAlertAction(title: "GOT IT", style: .Default, handler: {(action) -> Void in
+            
+            self.dismissViewControllerAnimated(true, completion: { (action) -> Void in
+                
+                self.Email.text = ""
+                self.Password.text = ""
+                
+            })
+            
+        }))
+        
+        self.presentViewController(alert, animated: true, completion: nil)
+        
+    }
+    
+    /*
+    * GO TO NEXT VIEW
+    *
+    * PARAMS: NONE*
+    *
+    * DESCRIPTION:
+    *   Perform a segue to the next screen
+    */
+    func goToNextView() {
+        performSegueWithIdentifier("login-main", sender: self)
+    }
 
 }
