@@ -34,10 +34,10 @@ class ValidateUITextField: NSObject {
         if textfield.text == "" {
                 
             textfield.layer.borderColor = UIColor.redColor().CGColor
-            textfield.layer.borderWidth = 1
+            textfield.layer.borderWidth = 2
             textfield.layer.cornerRadius = 5.0
             errorLabel.text = "Enter your \(message)"
-            errorLabel.textColor = UIColor.redColor()
+            errorLabel.textColor = UIColor.whiteColor()
                 
             return false
                 
@@ -74,7 +74,7 @@ class ValidateUITextField: NSObject {
             confirmPassword.layer.borderColor = UIColor.redColor().CGColor
             confirmPassword.layer.borderWidth = 1
             confirmPassword.layer.cornerRadius = 5.0
-            errorLbl.text = "your passwords do not match"
+            errorLbl.text = "*****your passwords do not match"
             errorLbl.textColor = UIColor.redColor()
             
             return false

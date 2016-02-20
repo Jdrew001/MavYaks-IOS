@@ -13,12 +13,13 @@ class LoginViewController: UIViewController {
     //IB OUTLETS, Variables, and Class declarations
     @IBOutlet weak var Email: UITextField!
     
+    @IBOutlet weak var loginBtn: UIButton!
     @IBOutlet weak var Password: UITextField!
     
     @IBOutlet weak var emailErrorTxt: UILabel!
     @IBOutlet weak var passwordErrorTxt: UILabel!
     private var business = UserBusiness()
-    
+    private let viewControllerCustom = ViewControllerCustomizer()
     
     /*
     *
@@ -34,6 +35,8 @@ class LoginViewController: UIViewController {
         emailErrorTxt.text = ""
         passwordErrorTxt.text = ""
         
+//        viewControllerCustom.customNavBarLogin(self, width: self.view.frame.width, height: self.view.frame.height)
+//        viewControllerCustom.customLoginViewController(self, width: self.view.frame.width, height: self.view.frame.height)
         
         //Looks for single or multiple taps.
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
@@ -48,12 +51,14 @@ class LoginViewController: UIViewController {
     }
     
     override func viewDidAppear(animated: Bool) {
+        viewControllerCustom.customNavBarLogin(self, width: self.view.frame.width, height: self.view.frame.height)
+        viewControllerCustom.customLoginViewController(self, width: self.view.frame.width, height: self.view.frame.height)
         
         //Present the next view if a user has already been authenticated
         if business.authUser() == true {
             
-            //UNCOMMENT!!!!!!
-            //goToNextView()
+            //Go to next view
+            goToNextView()
             
         }
         
@@ -62,6 +67,16 @@ class LoginViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        viewControllerCustom.customNavBarLogin(self, width: self.view.frame.width, height: self.view.frame.height)
+        viewControllerCustom.customLoginViewController(self, width: self.view.frame.width, height: self.view.frame.height)
+    }
+    
+    override func viewDidDisappear(animated: Bool) {
+        viewControllerCustom.customNavBarLogin(self, width: self.view.frame.width, height: self.view.frame.height)
+        viewControllerCustom.customLoginViewController(self, width: self.view.frame.width, height: self.view.frame.height)
     }
     
     /*
@@ -98,7 +113,6 @@ class LoginViewController: UIViewController {
         if(emailText.checkInput(emailErrorTxt, message: "email") == true && passwordText.checkInput(passwordErrorTxt, message: "password") == true){
             
             print("WORKED!!!!")
-            
             
             //Call a method that takes the email and password and gives it to the model
             business.loginUser(User(email: Email.text!, password: Password.text!, username: ""), viewController: self)

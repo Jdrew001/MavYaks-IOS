@@ -22,7 +22,10 @@
 		393A7D9C1C6F9AC100757CAD /* ValidateUITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 393A7D9B1C6F9AC100757CAD /* ValidateUITextField.swift */; };
 		3966B5F41C76DDAB007637FD /* MoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3966B5F31C76DDAB007637FD /* MoreViewController.swift */; };
 		3966B5F61C779903007637FD /* ProfileBusiness.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3966B5F51C779903007637FD /* ProfileBusiness.swift */; };
-		3966B5F81C77F1F1007637FD /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3966B5F71C77F1F1007637FD /* WelcomeViewController.swift */; };
+		3966B5FC1C78C099007637FD /* ViewControllerCustomizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3966B5FB1C78C099007637FD /* ViewControllerCustomizer.swift */; };
+		3966B6011C78CB33007637FD /* collegec.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3966B5FF1C78C715007637FD /* collegec.ttf */; };
+		3966B6021C78CB33007637FD /* colleges.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3966B5FD1C78C704007637FD /* colleges.ttf */; };
+		3966B6031C78CB33007637FD /* college.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3966B5FE1C78C70E007637FD /* college.ttf */; };
 		3991F2C21C73EA6300CD9D9B /* ProfileStartUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3991F2C11C73EA6300CD9D9B /* ProfileStartUpViewController.swift */; };
 		3991F2C41C73EB7D00CD9D9B /* UserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3991F2C31C73EB7D00CD9D9B /* UserProfile.swift */; };
 		7DA4F95813E6E61513AC035F /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E86E9D31699CDD2F2F62380 /* Pods.framework */; };
@@ -68,7 +71,10 @@
 		393A7D9B1C6F9AC100757CAD /* ValidateUITextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ValidateUITextField.swift; sourceTree = "<group>"; };
 		3966B5F31C76DDAB007637FD /* MoreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoreViewController.swift; sourceTree = "<group>"; };
 		3966B5F51C779903007637FD /* ProfileBusiness.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileBusiness.swift; sourceTree = "<group>"; };
-		3966B5F71C77F1F1007637FD /* WelcomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
+		3966B5FB1C78C099007637FD /* ViewControllerCustomizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerCustomizer.swift; sourceTree = "<group>"; };
+		3966B5FD1C78C704007637FD /* colleges.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = colleges.ttf; path = ../../../Downloads/college/colleges.ttf; sourceTree = "<group>"; };
+		3966B5FE1C78C70E007637FD /* college.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = college.ttf; path = ../../../Downloads/college/college.ttf; sourceTree = "<group>"; };
+		3966B5FF1C78C715007637FD /* collegec.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = collegec.ttf; path = ../../../Downloads/college/collegec.ttf; sourceTree = "<group>"; };
 		3991F2C11C73EA6300CD9D9B /* ProfileStartUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileStartUpViewController.swift; sourceTree = "<group>"; };
 		3991F2C31C73EB7D00CD9D9B /* UserProfile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfile.swift; sourceTree = "<group>"; };
 		5E86E9D31699CDD2F2F62380 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -173,7 +179,6 @@
 				393A7D641C6F860400757CAD /* RegisterViewController.swift */,
 				3991F2C11C73EA6300CD9D9B /* ProfileStartUpViewController.swift */,
 				3966B5F31C76DDAB007637FD /* MoreViewController.swift */,
-				3966B5F71C77F1F1007637FD /* WelcomeViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -181,6 +186,7 @@
 		393A7D611C6F81DC00757CAD /* Layout */ = {
 			isa = PBXGroup;
 			children = (
+				3966B6001C78C769007637FD /* SupportingFiles */,
 				393A7D351C6F7FFE00757CAD /* Main.storyboard */,
 				393A7D381C6F7FFE00757CAD /* Assets.xcassets */,
 				393A7D3A1C6F7FFE00757CAD /* LaunchScreen.storyboard */,
@@ -201,8 +207,19 @@
 			isa = PBXGroup;
 			children = (
 				393A7D9B1C6F9AC100757CAD /* ValidateUITextField.swift */,
+				3966B5FB1C78C099007637FD /* ViewControllerCustomizer.swift */,
 			);
 			name = Common;
+			sourceTree = "<group>";
+		};
+		3966B6001C78C769007637FD /* SupportingFiles */ = {
+			isa = PBXGroup;
+			children = (
+				3966B5FF1C78C715007637FD /* collegec.ttf */,
+				3966B5FD1C78C704007637FD /* colleges.ttf */,
+				3966B5FE1C78C70E007637FD /* college.ttf */,
+			);
+			name = SupportingFiles;
 			sourceTree = "<group>";
 		};
 		740D097D3C7E4CD2701E0466 /* Frameworks */ = {
@@ -332,6 +349,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3966B6011C78CB33007637FD /* collegec.ttf in Resources */,
+				3966B6021C78CB33007637FD /* colleges.ttf in Resources */,
+				3966B6031C78CB33007637FD /* college.ttf in Resources */,
 				393A7D3C1C6F7FFE00757CAD /* LaunchScreen.storyboard in Resources */,
 				393A7D391C6F7FFE00757CAD /* Assets.xcassets in Resources */,
 				393A7D371C6F7FFE00757CAD /* Main.storyboard in Resources */,
@@ -413,9 +433,9 @@
 				393A7D671C6F86E700757CAD /* User.swift in Sources */,
 				3966B5F41C76DDAB007637FD /* MoreViewController.swift in Sources */,
 				3991F2C21C73EA6300CD9D9B /* ProfileStartUpViewController.swift in Sources */,
-				3966B5F81C77F1F1007637FD /* WelcomeViewController.swift in Sources */,
 				393A7D341C6F7FFE00757CAD /* SecondViewController.swift in Sources */,
 				393A7D301C6F7FFE00757CAD /* AppDelegate.swift in Sources */,
+				3966B5FC1C78C099007637FD /* ViewControllerCustomizer.swift in Sources */,
 				393A7D9C1C6F9AC100757CAD /* ValidateUITextField.swift in Sources */,
 				3966B5F61C779903007637FD /* ProfileBusiness.swift in Sources */,
 				393A7D321C6F7FFE00757CAD /* FirstViewController.swift in Sources */,
