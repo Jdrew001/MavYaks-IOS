@@ -7,19 +7,32 @@
 //
 
 import Foundation
+import UIKit
 
-class UserProfile: NSObject {
+class UserProfile {
 
-    /*
-        Class to do list:
+    private let image: UIImage
+    private let firstName: String
+    private let lastName: String
     
     
+    init(image: UIImage, firstName: String, lastName: String) {
+        self.image = image
+        self.firstName = firstName;
+        self.lastName = lastName;
+    }
     
+    func getImage() -> UIImage {
+        return image
+    }
     
+    func getFirstName() -> String {
+        return firstName
+    }
     
+    func getLastName() -> String {
+        return lastName
+    }
     
-    
-    
-    */
     
 }

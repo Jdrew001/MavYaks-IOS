@@ -9,7 +9,7 @@
 import UIKit
 
 class LoginViewController: UIViewController {
-
+    
     //IB OUTLETS, Variables, and Class declarations
     @IBOutlet weak var Email: UITextField!
     
@@ -23,13 +23,13 @@ class LoginViewController: UIViewController {
     /*
     *
     * Called when the view loads and performs the following code
-    * 
+    *
     *
     *
     */
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
         emailErrorTxt.text = ""
         passwordErrorTxt.text = ""
@@ -53,17 +53,17 @@ class LoginViewController: UIViewController {
         if business.authUser() == true {
             
             //UNCOMMENT!!!!!!
-            goToNextView()
+            //goToNextView()
             
         }
         
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    
     /*
     * Login button event listener
     * PRESSED:
@@ -76,7 +76,7 @@ class LoginViewController: UIViewController {
     */
     @IBAction func loginBtnPressed(sender: AnyObject) {
         
-            
+        
         //METHOD: authenticateUser()
         authenticateUser()
     }
@@ -102,7 +102,7 @@ class LoginViewController: UIViewController {
             
             //Call a method that takes the email and password and gives it to the model
             business.loginUser(User(email: Email.text!, password: Password.text!, username: ""), viewController: self)
-        }         
+        }
     }
     
     /*
@@ -153,7 +153,9 @@ class LoginViewController: UIViewController {
     *   Perform a segue to the next screen
     */
     func goToNextView() {
+        self.navigationController?.popToRootViewControllerAnimated(false)
+        
         performSegueWithIdentifier("login-main", sender: self)
     }
-
+    
 }

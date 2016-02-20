@@ -8,8 +8,7 @@
 
 import Foundation
 import Firebase
-
-
+import UIKit
 
 /*
 * User model
@@ -29,22 +28,23 @@ class User {
     private let username: String
     private let password: String
     
-    /*init?(authData: FAuthData) {
+    init(email: String, password: String, username: String) {
+        self.email = email
+        self.username = username
+        self.password = password
+        
+    }
+    
+    init?(authData: FAuthData) {
         
         //uid = authData.uid
         email = authData.providerData["email"] as! String
         password = authData.providerData["password"] as! String
+        self.username = ""
         
         if email.isEmpty || password.isEmpty {
             return nil
         }
-        
-    }*/
-    
-    init( email: String, password: String, username: String) {
-        self.email = email
-        self.username = username
-        self.password = password
         
     }
     

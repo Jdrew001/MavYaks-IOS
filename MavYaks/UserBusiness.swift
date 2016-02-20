@@ -18,6 +18,8 @@ class UserBusiness {
     
     //Variables and Class declarations
     let ref = Firebase(url: "https://mavyak.firebaseio.com");
+    private var users: [String] = [String]()
+    var usernameTaken = false
     
     init() {
         
@@ -37,58 +39,90 @@ class UserBusiness {
     */
     func registerUser(user: User, viewController: RegisterViewController) {
         
-        ref.createUser(user.getEmail(), password: user.getPassword(),
-            withValueCompletionBlock: { error, result in
-                if error != nil {
-                    // There was an error creating the account
-                    print(error)
-                    
-                    if let errorCode = FAuthenticationError(rawValue: error.code) {
-                        switch (errorCode) {
-                        case .EmailTaken:
-                            viewController.createAlert("Email is already been taken")
-                        case .NetworkError:
-                            viewController.createAlert("Something is wrong with your connection")
-                        case .Unknown:
-                            viewController.createAlert("Something UNKNOWN happen. Try again soon")
-                        default:
-                            viewController.createAlert("OOPS something went wrong")
-                        }
-                    }
-                    
-                } else {
-                    
-                    /*
-                    * Authenticating the user through email and password
-                    *
-                    * After authenticated and no error occurs, then we create a user object in the database and pass 
-                    *   the user's authetication provider, username, and email
-                    *
-                    */
-                    self.ref.authUser(user.getEmail(), password: user.getPassword(), withCompletionBlock: { (error, authData) -> Void in
-                        
+        let userRef = Firebase(url: "https://mavyak.firebaseio.com/users");
+        
+        userRef.observeSingleEventOfType(.Value, withBlock: { snapshot in
+            print(snapshot.childrenCount) // I got the expected number of items
+            for rest in snapshot.children.allObjects as! [FDataSnapshot] {
+                self.users.append(rest.value["username"] as! String)
+            }
+            
+            
+            for i in self.users {
+                
+                if user.getUsername() == i {
+                    self.usernameTaken = true
+                }
+                
+            }
+            
+            if(self.usernameTaken) {
+                
+                viewController.createAlert("The username '\(user.getUsername())' is already taken")
+                
+            } else {
+                
+                self.ref.createUser(user.getEmail(), password: user.getPassword(),
+                    withValueCompletionBlock: { error, result in
                         if error != nil {
+                            // There was an error creating the account
+                            print(error)
                             
-                            print("An error occured")
+                            if let errorCode = FAuthenticationError(rawValue: error.code) {
+                                switch (errorCode) {
+                                case .EmailTaken:
+                                    viewController.createAlert("Email is already been taken")
+                                case .NetworkError:
+                                    viewController.createAlert("Something is wrong with your connection")
+                                case .Unknown:
+                                    viewController.createAlert("Something UNKNOWN happen. Try again soon")
+                                default:
+                                    viewController.createAlert("OOPS something went wrong")
+                                }
+                            }
                             
                         } else {
-                            //This executes when no error exists
                             
-                            let userId = authData.uid
+                            /*
+                            * Authenticating the user through email and password
+                            *
+                            * After authenticated and no error occurs, then we create a user object in the database and pass
+                            *   the user's authetication provider, username, and email
+                            *
+                            *
+                            */
+                            self.ref.authUser(user.getEmail(), password: user.getPassword(), withCompletionBlock: { (error, authData) -> Void in
                             
-                            let newUser = [
-                                "provider": authData.provider,
-                                "email": authData.providerData["email"] as? NSString as? String,
-                                "username" : user.getUsername()
-                            ]
+                            if error != nil {
                             
-                            self.ref.childByAppendingPath("users").childByAppendingPath(userId).setValue(newUser)
+                                print("An error occured")
+                            
+                            } else {
+                                //This executes when no error exists
+                            
+                                let userId = authData.uid
+                            
+                                let newUser = [
+                                    "provider": authData.provider,
+                                    "email": authData.providerData["email"] as? NSString as? String,
+                                    "username" : user.getUsername()
+                                ]
+                            
+                                print(userId)
+                            
+                                self.ref.childByAppendingPath("users").childByAppendingPath(userId).setValue(newUser)
+                                
+                                }
+                            
+                            })
+                            
+                            viewController.goToNextView()
                         }
-                        
-                    })
-                    
-                viewController.goToNextView()
+                })
+                
             }
+            
+            
         })
         
     }

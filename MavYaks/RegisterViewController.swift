@@ -81,6 +81,7 @@ class RegisterViewController: UIViewController {
     *   Perform a segue to the next screen
     */
     func goToNextView() {
+        self.navigationController?.popToRootViewControllerAnimated(false)
         performSegueWithIdentifier("Register-main", sender: self)
     }
     

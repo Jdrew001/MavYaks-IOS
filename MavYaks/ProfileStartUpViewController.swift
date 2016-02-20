@@ -16,6 +16,8 @@ class ProfileStartUpViewController: UIViewController, UIImagePickerControllerDel
     var imagePicker = UIImagePickerController()
     
     @IBOutlet weak var imageView: UIImageView!
+    
+    private let profileBusiness = ProfileBusiness()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,11 +47,13 @@ class ProfileStartUpViewController: UIViewController, UIImagePickerControllerDel
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?) {
         
-        print("IMage picked")
+        print("Image picked")
         
         self.dismissViewControllerAnimated(true, completion: nil)
         
         imageView.image = image
+        
+        
         
     }
     
@@ -60,6 +64,8 @@ class ProfileStartUpViewController: UIViewController, UIImagePickerControllerDel
     @IBAction func saveBtn(sender: AnyObject) {
         
         //Save to the database through the business logic
+        //Throw the image to the user profile object
+        profileBusiness.saveUserProfile(UserProfile(image: imageView.image!, firstName: firstNameTxt.text!, lastName: lastNameTxt.text!))
         
     }
 
